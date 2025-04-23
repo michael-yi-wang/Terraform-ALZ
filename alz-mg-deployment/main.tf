@@ -2,17 +2,27 @@ terraform {
   required_providers {
     azapi = {
       source  = "Azure/azapi"
-      version = "~> 1.0.0"
+      version = "~> 2.2"
     }
     alz = {
       source  = "Azure/alz"
       version = "~> 0.17.4"
     }
+    modtm = {
+      source  = "Azure/modtm"
+      version = "~> 0.3"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
+
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.9"
+    }
   }
 }
-
-# This allows us to get the tenant id
-data "azapi_client_config" "current" {}
 
 # Include the additional policies and override archetypes
 provider "alz" {
@@ -26,4 +36,17 @@ provider "alz" {
       custom_url = "${path.root}/lib"
     }
   ]
+}
+
+provider "azapi" {}
+
+
+# This allows us to get the tenant id
+data "azapi_client_config" "current" {}
+
+output "subscription_id" {
+  value = data.azapi_client_config.current.subscription_id
+}
+output "tenant_id" {
+  value = data.azapi_client_config.current.tenant_id
 }
