@@ -44,9 +44,3 @@ provider "azapi" {}
 # This allows us to get the tenant id
 data "azapi_client_config" "current" {}
 
-output "subscription_id" {
-  value = data.azapi_client_config.current.subscription_id
-}
-output "tenant_id" {
-  value = data.azapi_client_config.current.tenant_id
-}
