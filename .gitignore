@@ -41,3 +41,6 @@ terraform.rc
 
 # Ignore .alzlib files
 .alzlib
+
+# log files
+*.log
